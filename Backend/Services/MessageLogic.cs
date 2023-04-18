@@ -11,8 +11,6 @@ namespace Backend.Services
         public MessageLogic()
         {
             messages = new List<Message>();
-            messages.Add(new Message("Boby", "Asdasd"));
-            messages.Add(new Message("Bobysdfgsdfg", "Asdasd"));
 
         }
 
