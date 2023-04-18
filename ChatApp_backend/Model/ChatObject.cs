@@ -13,7 +13,7 @@
         }
         public override string ToString()
         {
-            return Date + " " + Name + " " + Message + '\n';
+            return Date + ", " + Name + ": " + Message + '\n';
         }
     }
 }

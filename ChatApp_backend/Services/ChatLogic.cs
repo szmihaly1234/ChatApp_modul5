@@ -16,5 +16,10 @@ namespace ChatApp_backend.Services
         {
             Chat += chatObject.ToString();
         }
+
+        public string ReadAllChat()
+        {
+            return Chat;
+        }
     }
 }
