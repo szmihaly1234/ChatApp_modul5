@@ -5,7 +5,7 @@ namespace Backend.Logic
 {
     public interface IMessageLogic
     {
-        void Add(Message newMessage);
+        void Create(Message newMessage);
         List<Message> GetAll();
     }
 }

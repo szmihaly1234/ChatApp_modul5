@@ -16,7 +16,7 @@ namespace Backend.Services
 
         }
 
-        public void Add(Message newMessage)
+        public void Create(Message newMessage)
         {
             messages.Add(newMessage);
         }

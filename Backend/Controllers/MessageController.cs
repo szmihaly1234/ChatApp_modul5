@@ -10,12 +10,12 @@ namespace Backend.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ChatController : Controller
+    public class MessageController : Controller
     {
         IMessageLogic logic;
         IHubContext<SignalRHub> hub;
 
-        public ChatController(IMessageLogic logic, IHubContext<SignalRHub> hub)
+        public MessageController(IMessageLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
             this.hub = hub;
@@ -30,8 +30,8 @@ namespace Backend.Controllers
         [HttpPost]
         public void Create([FromBody] Message message)
         {
-            this.logic.Add(message);
-            this.hub.Clients.All.SendAsync("ChatCreated", message);
+            this.logic.Create(message);
+            this.hub.Clients.All.SendAsync("MessageCreated", message);
         }
     }
 }

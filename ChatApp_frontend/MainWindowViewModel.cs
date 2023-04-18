@@ -39,6 +39,7 @@ namespace ChatApp_frontend
                         Content = value.Content
                     };
                     OnPropertyChanged();
+                    (SendMessage as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -54,8 +55,19 @@ namespace ChatApp_frontend
 
         public MainWindowViewModel()
         {
-            Messages = new RestCollection<Message>("http://localhost:19333/", "chat", "hub");
-
+            if(!IsInDesignMode)
+            {
+                Messages = new RestCollection<Message>("http://localhost:19333/", "message", "hub");
+                SendMessage = new RelayCommand(() =>
+                {
+                    
+                    Messages.Add(new Message()
+                    {
+                        Sender = Current.Sender,
+                        Content = Current.Content
+                    });
+                });
+            }
         }
     }
 }
