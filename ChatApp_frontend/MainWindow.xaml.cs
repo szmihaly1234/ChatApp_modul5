@@ -24,7 +24,6 @@ namespace ChatApp_frontend
     public partial class MainWindow : Window
     {
         ChatLogic logic;
-        
         public MainWindow()
         {
             InitializeComponent();
@@ -39,9 +38,5 @@ namespace ChatApp_frontend
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
