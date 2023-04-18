@@ -23,18 +23,13 @@ namespace ChatApp_frontend
     /// </summary>
     public partial class MainWindow : Window
     {
-        ChatLogic logic;
         public MainWindow()
         {
             InitializeComponent();
-            logic = new ChatLogic();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ChatObject obj = new ChatObject(sender_name.Text, message.Text);
-            logic.AddMessage(obj);
-            chat.Text = logic.ReadAllChat();
 
         }
 

@@ -11,6 +11,10 @@
             Message = message;
             Date = DateTime.Now.ToString();
         }
+        public ChatObject() 
+        {
+            Date = DateTime.Now.ToString();
+        }
         public override string ToString()
         {
             return Date + ", " + Name + ": " + Message + '\n';
