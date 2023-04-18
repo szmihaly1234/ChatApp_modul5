@@ -11,9 +11,9 @@ namespace ChatApp_backend.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        IChatLogic chatLogic;
+        IChatObjectLogic chatLogic;
         IHubContext<SignalRHub> hub;
-        public ChatController(IChatLogic chatLogic, IHubContext<SignalRHub> hub)
+        public ChatController(IChatObjectLogic chatLogic, IHubContext<SignalRHub> hub)
         {
             this.chatLogic = chatLogic;
             this.hub = hub;
@@ -21,13 +21,13 @@ namespace ChatApp_backend.Controllers
         [HttpGet]
         public string ReadAll()
         {
-            return chatLogic.ReadAllChat();
+            return chatLogic.ReadAll();
         }
         [HttpPost]
         public void AddMessage([FromBody] ChatObject value)
         {
             chatLogic.AddMessage(value);
-            this.hub.Clients.All.SendAsync("MessageCreated", value);
+            this.hub.Clients.All.SendAsync("ChatCreated", value);
 
         }
         

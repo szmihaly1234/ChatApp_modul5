@@ -1,4 +1,4 @@
-﻿using ChatApp_backend.Model;
+﻿using Backend.Model;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -14,19 +14,29 @@ namespace ChatApp_frontend
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        public RestCollection<ChatObject> ChatObjects { get; set; }
-        private ChatObject current;
-        public ChatObject Current
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                SetProperty(ref errorMessage, value);
+            }
+        }
+        public RestCollection<Message> Messages { get; set; }
+
+        private Message current;
+        public Message Current
         {
             get { return current; }
             set
             {
                 if (value != null)
                 {
-                    current = new ChatObject()
+                    current = new Message()
                     {
-                        Name = value.Name,
-                        Message = value.Message
+                        Sender = value.Sender,
+                        Content = value.Content
                     };
                     OnPropertyChanged();
                 }
@@ -44,18 +54,8 @@ namespace ChatApp_frontend
 
         public MainWindowViewModel()
         {
-            if(!IsInDesignMode)
-            {
-                ChatObjects = new RestCollection<ChatObject>("https://localhost:7120/", "Chat", "hub");
-                SendMessage = new RelayCommand(() =>
-                {
-                    ChatObjects.Add(new ChatObject()
-                    {
-                        Name = Current.Name,
-                        Message = Current.Message
-                    });
-                });
-            }
+            Messages = new RestCollection<Message>("http://localhost:19333/", "chat", "hub");
+
         }
     }
 }

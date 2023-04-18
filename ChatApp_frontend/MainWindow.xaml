@@ -16,11 +16,21 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="Aqua">
             <Label Content="Name" Padding="10" Background="Aqua"></Label>
-            <TextBox Text="{Binding Current.Name}"  Padding="10" FontSize="15"></TextBox>
+            <TextBox Text="{Binding Current.Sender}"  Padding="10" FontSize="15"></TextBox>
             <Label Content="Message" Padding="10" Background="Aqua"></Label>
-            <TextBox Text="{Binding Current.Message}" Padding="10" FontSize="15"></TextBox>
+            <TextBox Text="{Binding Current.Content}" Padding="10" FontSize="15"></TextBox>
             <Button Content="Send" Padding="15" Command="{Binding SendMessage}"></Button>
         </StackPanel>
-        <ListBox Grid.Column="1" ItemsSource="{Binding ChatObjects}" SelectedItem="{Binding Current}"></ListBox>
+        <ListBox Grid.Column="1" ItemsSource="{Binding Messages}" SelectedItem="{Binding Current}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Sender}"></Label>
+                        <Label Content="{Binding Content}"></Label>
+                        <Label Content="{Binding Date}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
