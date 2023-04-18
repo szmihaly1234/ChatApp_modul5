@@ -35,7 +35,7 @@ namespace ChatApp_frontend
                 }
             }
         }
-        public ICommand SendMessage {  get; set; }
+        public ICommand SendMessage { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -47,12 +47,12 @@ namespace ChatApp_frontend
 
         public MainWindowViewModel()
         {
-            if(!IsInDesignMode)
+            if (!IsInDesignMode)
             {
                 Messages = new RestCollection<Message>("http://localhost:19333/", "message", "hub");
                 SendMessage = new RelayCommand(() =>
                 {
-                    
+
                     Messages.Add(new Message()
                     {
                         Sender = Current.Sender,
