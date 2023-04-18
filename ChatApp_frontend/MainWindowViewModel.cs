@@ -36,7 +36,8 @@ namespace ChatApp_frontend
                     current = new Message()
                     {
                         Sender = value.Sender,
-                        Content = value.Content
+                        Content = value.Content,
+                        Date = DateTime.Now.ToString()
                     };
                     OnPropertyChanged();
                     (SendMessage as RelayCommand).NotifyCanExecuteChanged();
@@ -64,7 +65,8 @@ namespace ChatApp_frontend
                     Messages.Add(new Message()
                     {
                         Sender = Current.Sender,
-                        Content = Current.Content
+                        Content = Current.Content,
+                        Date = Current.Date,
                     });
                 });
             }
