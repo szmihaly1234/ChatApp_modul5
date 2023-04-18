@@ -24,7 +24,7 @@
         <ListBox Grid.Column="1" ItemsSource="{Binding Messages}" SelectedItem="{Binding Current}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Background="LightSkyBlue" Margin="5">
                         <Label Content="{Binding Sender}"></Label>
                         <Label Content="{Binding Content}"></Label>
                         <Label Content="{Binding Date}"></Label>

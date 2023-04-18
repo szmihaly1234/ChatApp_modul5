@@ -22,7 +22,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Message> ReadAll()
+        public List<Message> ReadAll()
         {
             return this.logic.GetAll();
         }
