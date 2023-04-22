@@ -16,18 +16,18 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="Aqua">
             <Label Content="Name" Padding="10" Background="Aqua"></Label>
-            <TextBox Text="{Binding Current.Sender}"  Padding="10" FontSize="15"></TextBox>
+            <TextBox Text="{Binding Sender}"  Padding="10" FontSize="15"></TextBox>
             <Label Content="Message" Padding="10" Background="Aqua"></Label>
-            <TextBox Text="{Binding Current.Content}" Padding="10" FontSize="15"></TextBox>
+            <TextBox Text="{Binding Content}" Padding="10" FontSize="15"></TextBox>
             <Button Content="Send" Padding="15" Command="{Binding SendMessage}"></Button>
         </StackPanel>
         <ListBox Grid.Column="1" ItemsSource="{Binding Messages}" SelectedItem="{Binding Current}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Background="LightSkyBlue" Margin="5">
-                        <Label Content="{Binding Sender}"></Label>
-                        <Label Content="{Binding Content}"></Label>
-                        <Label Content="{Binding Date}"></Label>
+                        <Label Content="{Binding Sender}" FontWeight="Bold" FontSize="20"></Label>
+                        <Label Content="{Binding Content}" FontSize="16"></Label>
+                        <Label Content="{Binding Date}" FontSize="12"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
