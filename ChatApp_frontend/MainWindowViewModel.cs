@@ -26,7 +26,7 @@ namespace ChatApp_frontend
                 {
                     current = new Message()
                     {
-                        Sender = value.Sender,
+                        Sender = value.sender,
                         Content = value.Content,
                         Date = DateTime.Now.ToString()
                     };
