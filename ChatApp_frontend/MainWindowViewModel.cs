@@ -16,26 +16,36 @@ namespace ChatApp_frontend
     {
         public RestCollection<Message> Messages { get; set; }
 
-        private Message current;
-        public Message Current
+        private string sender;
+        public string Sender
         {
-            get { return current; }
+            get { return sender; }
             set
             {
-                if (value != null)
+                if (!string.Equals(this.sender, value))
                 {
-                    current = new Message()
-                    {
-                        Sender = value.Sender,
-                        Content = value.Content,
-                        Date = DateTime.Now.ToString()
-                    };
-                    OnPropertyChanged();
-                    (SendMessage as RelayCommand).NotifyCanExecuteChanged();
+                    sender = value;
+                    this.OnPropertyChanged();
                 }
             }
         }
-        public ICommand SendMessage { get; set; }
+
+        private string content;
+        public string Content
+        {
+            get { return content; }
+            set
+            {
+                if(!string.Equals(this.content, value))
+                {
+                    content = value;
+                    this.OnPropertyChanged();
+                }
+            }
+        }
+
+
+        public ICommand SendMessage {  get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -47,17 +57,17 @@ namespace ChatApp_frontend
 
         public MainWindowViewModel()
         {
-            if (!IsInDesignMode)
+            if(!IsInDesignMode)
             {
-                Messages = new RestCollection<Message>("http://localhost:19333/", "message", "hub");
+                Messages = new RestCollection<Message>("http://localhost:5000/", "message", "hub");
                 SendMessage = new RelayCommand(() =>
                 {
-
+                    
                     Messages.Add(new Message()
                     {
-                        Sender = Current.Sender,
-                        Content = Current.Content,
-                        Date = Current.Date,
+                        Sender = sender,
+                        Content = content,
+                        Date = DateTime.Now.ToString()
                     });
                 });
             }
